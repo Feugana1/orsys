@@ -3,7 +3,7 @@ services:
   db:
     image: mysql:latest
     volumes:
-      - db_data_mysql2:/var/lib/mysql
+      - db_data_mysql:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -13,6 +13,7 @@ services:
     expose:
       - 3306
       - 33060
+
   wordpress:
     image: wordpress:latest
     ports:
@@ -23,5 +24,6 @@ services:
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
+
 volumes:
-db_data_mysql:
+  db_data_mysql:
