@@ -1,0 +1,46 @@
+version: "3.8"
+
+networks:
+  # enable connection with Traefik
+  traefik:
+    external: true
+  # network for the app
+  dev:
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data_mysql2:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 80:80
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    networks:
+      - traefik
+      - dev
+    labels:
+      # The labels are usefull for Traefik only
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Get the routes from http
+      - "traefik.http.routers.wordpressmysite.rule=Host(`${DOMAINE}`)"
+      - "traefik.http.routers.wordpressmysite.entrypoints=web"
+      # Redirect these routes to https
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.wordpressmysite.middlewares=redirect-to-https@docker"
