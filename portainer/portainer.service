@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/local/bin/docker-compose -f docker-compose.yml up -d
-ExecStop=/usr/local/bin/docker-compose -f docker-compose.yml down
+ExecStart=/usr/bin/docker-compose -f docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f docker-compose.yml down
 
 [Install]
 WantedBy=default.target
