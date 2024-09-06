@@ -4,7 +4,7 @@ services:
     deploy:
       placement:
         constraints:
-          - "node.labels.role == web"
+          - "node.labels.mylabel == web"
     ports:
       - "80:80"
     deploy:
@@ -18,6 +18,6 @@ services:
     deploy:
       placement:
         constraints:
-          - "node.labels.role == bdd"
+          - "node.labels.mylabel == bdd"
     environment:
       POSTGRES_PASSWORD: password
