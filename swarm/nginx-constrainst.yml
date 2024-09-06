@@ -5,14 +5,13 @@ services:
       placement:
         constraints:
           - "node.labels.mylabel == web"
-    ports:
-      - "80:80"
-    deploy:
       replicas: 5
       update_config:
         parallelism: 2
         delay: 10s
-  
+    ports:
+      - "80:80"
+      
   db:
     image: postgres
     deploy:
