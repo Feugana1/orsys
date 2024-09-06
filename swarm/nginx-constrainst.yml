@@ -1,0 +1,23 @@
+services:
+  nginx:
+    image: nginx:latest
+    deploy:
+      placement:
+        constraints:
+          - "node.labels.role == web"
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 5
+      update_config:
+        parallelism: 2
+        delay: 10s
+  
+  db:
+    image: postgres
+    deploy:
+      placement:
+        constraints:
+          - "node.labels.role == bdd"
+    environment:
+      POSTGRES_PASSWORD: password
