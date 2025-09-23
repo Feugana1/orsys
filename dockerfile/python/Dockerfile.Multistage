@@ -1,29 +1,30 @@
-# ---- Base python ----
-FROM python:3.6 AS base
-# Create app directory
+#  Base Python 
+FROM python:3.9-slim AS base
 WORKDIR /app
 
-# ---- Dependencies ----
-FROM base AS dependencies  
-COPY gunicorn_app/requirements.txt ./
-# install app dependencies
-RUN pip install -r requirements.txt
+#  Dependencies 
+FROM base AS dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# ---- Copy Files/Build ----
-FROM dependencies AS build  
+#  Build / Copy source 
+FROM dependencies AS build
 WORKDIR /app
 COPY . /app
-# Build / Compile if required
 
-# --- Release with Alpine ----
-FROM python:3.6-alpine3.7 AS release  
-# Create app directory
+#  Release 
+FROM python:3.9-slim AS release
 WORKDIR /app
 
-COPY --from=dependencies /app/requirements.txt ./
-COPY --from=dependencies /root/.cache /root/.cache
+# Copy only installed dependencies (no cache, no dev files)
+COPY --from=dependencies /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=dependencies /usr/local/bin /usr/local/bin
 
-# Install app dependencies
-RUN pip install -r requirements.txt
-COPY --from=build /app/ ./
-CMD ["gunicorn", "--config", "./gunicorn_app/conf/gunicorn_config.py", "gunicorn_app:app"]
+# Copy application source
+COPY --from=build /app /app
+
+# Expose app port
+EXPOSE 8080
+
+# Run the server
+CMD ["python", "server.py"]
