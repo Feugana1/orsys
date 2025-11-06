@@ -1,0 +1,41 @@
+# DL3006 : utiliser des versions spécifiques de base image, pas 'latest'
+FROM openjdk:latest
+
+# DL3008 : ne pas combiner apt-get update et install sans clean
+RUN apt-get update && apt-get install -y maven curl git
+
+# DL3013 : utiliser ADD pour copier un fichier local (préférer COPY)
+ADD target/myapp.jar /usr/src/myapp/myapp.jar
+
+# DL3020 : ne pas copier tout le contexte
+COPY . /usr/src/myapp/
+
+# DL4006 : set -e manquant dans les scripts shell
+RUN echo "Building project" && cd /usr/src/myapp && mvn clean package
+
+# DL3003 : utiliser && au lieu de plusieurs RUN
+RUN apt-get install -y vim
+RUN apt-get install -y nano
+
+# DL3009 : ne pas utiliser root user
+USER root
+
+# DL4001 : on ne doit pas utiliser apt-get upgrade
+RUN apt-get upgrade -y
+
+# DL3059 : pas de HEALTHCHECK
+# (aucune ligne HEALTHCHECK)
+
+# DL3042 : utiliser EXPOSE avec port inutile
+EXPOSE 8080
+
+# SC2086 : ne pas mettre de variables non-quotées
+ENV JAVA_OPTS=-Xmx512m
+
+# DL3025 : utiliser CMD plutôt qu’ENTRYPOINT pour des exécutables simples
+ENTRYPOINT java $JAVA_OPTS -jar /usr/src/myapp/myapp.jar
+
+~
+~
+~
+"Dockerfile" 37L, 1077B
