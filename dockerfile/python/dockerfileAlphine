@@ -1,0 +1,4 @@
+FROM alpine:latest
+
+CMD ["echo", "c'est ma première image"]
+
