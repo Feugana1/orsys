@@ -1,9 +1,6 @@
 
 
 ````markdown
-# 🐳 Parcours Pratique Docker Swarm  
-**Auteur : Lionel Fotso**  
-**Objectif général :** Comprendre, configurer et administrer un cluster Docker Swarm complet à 3 nœuds, avec des cas d’usage concrets : déploiement, réplication, haute disponibilité, mise à jour, et gestion de panne.
 
 ---
 
