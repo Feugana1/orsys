@@ -82,10 +82,6 @@ Bienvenue! Ce fichier vous oriente dans le matériel pédagogique Docker.
 orsys/
 ├── 📖 DOCUMENTATION
 │   ├── README.md                    # Point de départ
-│   ├── STRUCTURE.md                 # Organisation détaillée
-│   ├── AUDIT_DOCKER.md              # Analyse du projet
-│   ├── PLAN_AMELIORATIONS.md        # Roadmap
-│   ├── GUIDE_FORMATEURS.md          # Pour les cours
 │   ├── TP_CORRIGES_ET_AVANCES.md   # ⭐ TP principaux
 │   ├── INDEX_PEDAGOGIQUE.md         # CE FICHIER
 │   └── NEXT_STEPS.md                # Prochaines étapes
