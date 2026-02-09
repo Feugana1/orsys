@@ -157,7 +157,6 @@ cd my-stack
 
 # Créer docker-compose.yml
 cat > docker-compose.yml << 'EOF'
-version: '3.8'
 
 services:
   web:
