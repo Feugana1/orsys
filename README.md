@@ -54,11 +54,7 @@ Vous optimisez pour la production et explorez les cas complexes.
 ```
 orsys/
 ├── README.md                   ← Vous êtes ici!
-├── AUDIT_DOCKER.md            ← Diagnostique du projet
-├── PLAN_AMELIORATIONS.md       ← Améliorations en cours
 ├── STRUCTURE.md               ← Guide détaillé de navigation
-├── .gitignore                 ← Ne pas committer les secrets
-├── .dockerignore              ← Template pour images slim
 │
 ├── 📁 dockerfile/             ← Images Docker de base (⭐ → ⭐⭐⭐)
 │   ├── README.md              ← Guide dockerfile/
