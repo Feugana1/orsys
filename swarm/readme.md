@@ -17,7 +17,6 @@ Cette commande transforme ton hôte Docker local en manager Swarm, ce qui te per
 Crée un fichier `nginx.yml` (exemple minimal) :
 
 ```yaml
-version: "3.8"
 
 services:
   nginx:
