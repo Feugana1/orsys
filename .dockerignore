@@ -1,0 +1,62 @@
+# .dockerignore - Réduire la taille des images Docker
+# Copier ce fichier dans chaque dossier avec un Dockerfile
+
+# ========== GIT ==========
+.git
+.gitignore
+.gitattributes
+
+# ========== SECRETS & ENV ==========
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# ========== PYTHON ==========
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info
+.pytest_cache
+.coverage
+.tox
+
+# ========== NODE ==========
+node_modules
+npm-debug.log
+yarn-error.log
+
+# ========== IDE ==========
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# ========== OS ==========
+.DS_Store
+Thumbs.db
+
+# ========== DOCUMENTATION ==========
+README.md
+AUDIT_DOCKER.md
+PLAN_AMELIORATIONS.md
+STRUCTURE.md
+*.md
+
+# ========== BUILD & CACHE ==========
+target/
+dist/
+build/
+*.log
+logs/
+
+# ========== TEMPORARY ==========
+*.tmp
+.cache
+tmp/
