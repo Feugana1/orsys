@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 FROM dependencies AS build
 WORKDIR /app
 COPY . /app
+COPY server.py /app
 
 #  Release 
 FROM python:3.9-slim AS release
