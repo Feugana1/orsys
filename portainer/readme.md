@@ -3,7 +3,6 @@ sudo vi /etc/systemd/system/portainer.service
 
 2.Ajouter le contenu du fichier portainer.service
 
-
 3.rafraichir le daemon systemd
 sudo systemctl daemon-reload
 
